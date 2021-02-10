@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_logo"
+    android:paddingHorizontal="@dimen/medium_margin"
     tools:context=".fragments.AddTripFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,6 +14,7 @@
 
         <TextView
             android:id="@+id/newTripTextView"
+            style="@style/title_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/new_trip"
@@ -21,6 +24,199 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.05" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <EditText
+            android:id="@+id/editTextTripName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xx_large_margin"
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/small_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newTripTextView" />
+
+        <EditText
+            android:id="@+id/editTextTripDestination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/trip_destination"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/small_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTripName" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_between_elements"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTripDestination">
+
+            <RadioButton
+                android:id="@+id/cityBreakRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_margin"
+                android:buttonTint="@color/white_logo"
+                android:text="@string/city_break"
+                android:textColor="@color/white_logo" />
+
+
+            <RadioButton
+                android:id="@+id/seaSideRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_margin"
+                android:buttonTint="@color/white_logo"
+                android:text="@string/seaside"
+                android:textColor="@color/white_logo" />
+
+            <RadioButton
+                android:id="@+id/mountainsRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_margin"
+                android:buttonTint="@color/white_logo"
+                android:text="@string/mountains"
+                android:textColor="@color/white_logo" />
+        </RadioGroup>
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/constraintLayout2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/small_padding"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.0"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/radioGroup">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/priceTextView"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="@string/price"-->
+        <!--                android:textColor="@color/white_logo"-->
+        <!--                app:layout_constraintBottom_toBottomOf="@+id/priceSlider"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="@+id/priceSlider" />-->
+
+        <!--            <com.google.android.material.slider.Slider-->
+        <!--                android:id="@+id/priceSlider"-->
+        <!--                android:layout_width="350dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:value="200.0"-->
+        <!--                android:valueFrom="0.0"-->
+        <!--                android:valueTo="8000.0"-->
+        <!--                android:visibility="visible"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/priceTextView"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                app:layout_constraintVertical_bias="0.0"-->
+        <!--                app:thumbColor="@color/white_logo"-->
+        <!--                app:trackColor="@color/white_logo" />-->
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+            <TextView
+                android:id="@+id/priceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/price"
+                android:textColor="@color/white_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/priceSlider" />
+
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/priceSlider"
+                android:layout_width="@dimen/slider_width"
+                android:layout_height="wrap_content"
+                android:value="200.0"
+                android:valueFrom="0.0"
+                android:valueTo="10000.0"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/priceTextView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:thumbColor="@color/white_logo"
+                app:trackColor="@color/white_logo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar">
+
+            <EditText
+                android:id="@+id/startDatePickerEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/enter_start_date"
+                android:textColorHint="@color/white_logo" />
+
+            <EditText
+                android:id="@+id/endDatePickerEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/enter_end_date"
+                android:textColorHint="@color/white_logo" />
+        </LinearLayout>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/small_margin"
+            android:progressTint="@color/white_logo"
+            android:scaleX="0.65"
+            android:scaleY="0.65"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/addTripButton"
+            style="@style/button_primary"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:background="@drawable/button_primary"
+            android:text="@string/add_trip"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

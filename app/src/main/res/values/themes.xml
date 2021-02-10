@@ -12,5 +12,19 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="fontFamily">PTMono-Regular</item>
+    </style>
+
+    <style name="button_primary">
+        <item name="android:width">120dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/light_blue</item>
+        <item name="backgroundTint">@color/white_logo</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="title_textView">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/white_logo</item>
     </style>
 </resources>

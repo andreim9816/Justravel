@@ -2,10 +2,17 @@
     <string name="app_name">JustTravel</string>
     <string name="simple_travel_app_that_takes_care_of_your_holidays">Simple travel app that takes care of your holidays!</string>
     <string name="welcome">Welcome</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="trips">Trips</string>
     <string name="logo_image">logo_image</string>
     <string name="add_trip">add trip</string>
     <string name="new_trip">New trip</string>
+    <string name="name">Trip name</string>
+    <string name="trip_destination">Trip destination</string>
+    <string name="city_break">City Break</string>
+    <string name="seaside">Seaside</string>
+    <string name="mountains">Mountains</string>
+    <string name="price">Price €</string>
+    <string name="enter_start_date">Enter start date</string>
+    <string name="enter_end_date">Enter end date</string>
 </resources>

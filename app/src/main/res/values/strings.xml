@@ -3,7 +3,7 @@
     <string name="simple_travel_app_that_takes_care_of_your_holidays">Simple travel app that takes care of your holidays!</string>
     <string name="welcome">Welcome</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="trips">Trips</string>
+    <string name="trips">My trips</string>
     <string name="logo_image">logo_image</string>
     <string name="add_trip">add trip</string>
     <string name="new_trip">New trip</string>
@@ -15,4 +15,9 @@
     <string name="price">Price €</string>
     <string name="enter_start_date">Enter start date</string>
     <string name="enter_end_date">Enter end date</string>
+    <string name="trip_name_empty">You need to insert the trip name!</string>
+    <string name="trip_destination_empty">You need to insert the trip destination!</string>
+    <string name="trip_start_date_empty">You need to insert the trip start date!</string>
+    <string name="trip_end_date_empty">You need to insert the trip start date!</string>
+    <string name="toast_fields_empty">Pay attention to all fields!</string>
 </resources>

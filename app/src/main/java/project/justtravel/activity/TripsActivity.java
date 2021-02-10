@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import project.justtravel.R;
+import project.justtravel.fragments.AddTripFragment;
 import project.justtravel.fragments.TripsFragment;
 
 public class TripsActivity extends AppCompatActivity {
@@ -21,13 +22,10 @@ public class TripsActivity extends AppCompatActivity {
         displayFragment(new TripsFragment());
     }
 
-    private void displayFragment(Fragment fragment) {
+    /* Opens new fragment */
+    public void displayFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.tripsListFrameLayout, fragment);
         fragmentTransaction.commit();
-    }
-
-    public void addNewTripOnClick(View view) {
-        //TODO display new fragment
     }
 }

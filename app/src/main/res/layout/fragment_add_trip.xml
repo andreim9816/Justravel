@@ -34,6 +34,8 @@
             android:hint="@string/name"
             android:inputType="textPersonName"
             android:paddingStart="@dimen/small_padding"
+            android:textColor="@color/blue_logo"
+            android:textColorHint="@color/blue_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newTripTextView" />
@@ -47,6 +49,8 @@
             android:hint="@string/trip_destination"
             android:inputType="textPersonName"
             android:paddingStart="@dimen/small_padding"
+            android:textColor="@color/blue_logo"
+            android:textColorHint="@color/blue_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTripName" />
@@ -67,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/small_margin"
                 android:buttonTint="@color/white_logo"
+                android:checked="true"
                 android:text="@string/city_break"
                 android:textColor="@color/white_logo" />
 
@@ -150,19 +155,18 @@
                 android:id="@+id/priceSlider"
                 android:layout_width="@dimen/slider_width"
                 android:layout_height="wrap_content"
-                android:value="200.0"
-                android:valueFrom="0.0"
-                android:valueTo="10000.0"
-                android:visibility="visible"
+                android:stepSize="50.0"
+                android:valueFrom="200.0"
+                android:valueTo="5000.0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/priceTextView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 app:thumbColor="@color/white_logo"
                 app:trackColor="@color/white_logo" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
@@ -177,9 +181,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/medium_margin"
                 android:layout_weight="1"
+                android:focusable="false"
                 android:gravity="center"
                 android:hint="@string/enter_start_date"
-                android:textColorHint="@color/white_logo" />
+                android:textColorHint="@color/white_logo"
+                android:textIsSelectable="true"
+                android:windowSoftInputMode="stateAlwaysHidden" />
 
             <EditText
                 android:id="@+id/endDatePickerEditText"
@@ -187,9 +194,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/medium_margin"
                 android:layout_weight="1"
+                android:focusable="false"
                 android:gravity="center"
                 android:hint="@string/enter_end_date"
-                android:textColorHint="@color/white_logo" />
+                android:textColorHint="@color/white_logo"
+                android:textIsSelectable="true" />
         </LinearLayout>
 
         <RatingBar
@@ -199,6 +208,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/small_margin"
             android:progressTint="@color/white_logo"
+            android:rating="3.0"
             android:scaleX="0.65"
             android:scaleY="0.65"
             app:layout_constraintEnd_toEndOf="parent"
@@ -210,13 +220,13 @@
             android:id="@+id/addTripButton"
             style="@style/button_primary"
             android:layout_width="wrap_content"
-            android:layout_marginBottom="@dimen/big_margin"
+            android:layout_marginTop="80dp"
             android:background="@drawable/button_primary"
             android:text="@string/add_trip"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

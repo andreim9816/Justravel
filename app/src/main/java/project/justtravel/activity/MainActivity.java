@@ -1,14 +1,18 @@
 package project.justtravel.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import project.justtravel.R;
+import project.justtravel.fragments.AddTripFragment;
 
 public class MainActivity extends AppCompatActivity {
     ImageView logoImageView;
@@ -21,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // initialize UI items
-        initViews();
+        initUiElements();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }, TIME_OUT);
     }
 
-    private void initViews() {
+    private void initUiElements() {
         logoImageView = findViewById(R.id.logoImageView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
     }

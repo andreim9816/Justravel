@@ -36,9 +36,9 @@ public class Trip {
     private final Date endDate;
 
     @ColumnInfo(name = "rating")
-    private final int rating;
+    private final float rating;
 
-    public Trip(int id, String name, String destination, int type, int price, Date startDate, Date endDate, int rating) {
+    public Trip(int id, String name, String destination, int type, int price, Date startDate, Date endDate, float rating) {
         this.id = id;
         this.name = name;
         this.destination = destination;
@@ -77,7 +77,7 @@ public class Trip {
         return endDate;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 }

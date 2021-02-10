@@ -3,6 +3,7 @@ package project.justtravel.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,10 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wajahatkarim3.roomexplorer.RoomExplorer;
 
 import java.net.ContentHandler;
 import java.util.List;
+import java.util.Objects;
 
 import project.justtravel.R;
 import project.justtravel.data.Trip;
@@ -26,6 +29,7 @@ import project.justtravel.viewmodel.TripViewModel;
 public class TripsFragment extends Fragment {
     private RecyclerView recyclerView;
     private TripViewModel tripViewModel;
+    private FloatingActionButton fabButton;
 
     public TripsFragment() {
         // Required empty public constructor
@@ -45,6 +49,13 @@ public class TripsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
 
+        fabButton = view.findViewById(R.id.fab);
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayFragment(new AddTripFragment());
+            }
+        });
         // set layout
         recyclerView = view.findViewById(R.id.tripsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
@@ -64,9 +75,14 @@ public class TripsFragment extends Fragment {
                 adapter.setTrips(trips);
             }
         });
-
 //        RoomExplorer.show(container.getContext(), TripRoomDatabase.class, "trip_database");
-
         return view;
+    }
+
+    /* Opens new fragment */
+    private void displayFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction(); //requireActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.tripsListFrameLayout, new AddTripFragment());
+        fragmentTransaction.commit();
     }
 }

@@ -1,59 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/small_margin"
     android:background="@color/blue_logo"
-    android:orientation="vertical">
+    android:gravity="center">
 
-    <androidx.cardview.widget.CardView xmlns:android="//schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tripCardview"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         card_view:cardBackgroundColor="#2196F3"
-        card_view:cardCornerRadius="8dp"
-        card_view:cardElevation="8dp">
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="4dp"
+        card_view:cardUseCompatPadding="true">
 
         <!-- Main Content View -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="@dimen/cardview_height"
             android:orientation="vertical">
 
-            <TextView
-                android:background="green"
-                android:hint="trip name"
-                android:id="@+id/tripNameTextView"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/tripImageView"
                 android:layout_width="match_parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:contentDescription="@string/typeofdestinationimage"
+                android:src="@android:drawable/ic_menu_info_details" />
 
-            <TextView
-                android:background="@android:color/holo_orange_light"
-                android:hint="trip destionation name"
-                android:id="@+id/tripDestinationTextView"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardview_first_relative_layout"
                 android:layout_width="match_parent"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/extra_small_margin"
+                android:layout_weight="1">
 
-            <TextView
-                android:background="@android:color/holo_orange_light"
-                android:hint="trip price"
-                android:id="@+id/tripPriceTextView"
-                android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/tripNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/cardview_element_height"
+                    android:layout_alignParentStart="true"
+                    android:background="@android:color/holo_orange_light"
+                    android:gravity="center_vertical"
+                    android:hint="@string/trip_name"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <CheckBox
+                    android:id="@+id/star"
+                    style="?android:attr/starStyle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    card_view:layout_constraintBottom_toBottomOf="@+id/tripNameTextView"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardview_second_relative_layout"
                 android:layout_width="match_parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/tripDestinationTextView" />
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/extra_small_margin"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/tripDestinationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/cardview_element_height"
+                    android:layout_alignParentStart="true"
+                    android:background="@android:color/holo_orange_light"
+                    android:gravity="center_vertical"
+                    android:hint="@string/trip_destionation_name"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tripPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/cardview_element_height"
+                    android:layout_alignParentEnd="true"
+                    android:background="@android:color/holo_orange_light"
+                    android:gravity="center_vertical"
+                    android:hint="@string/trip_price"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
 

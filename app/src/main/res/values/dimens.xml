@@ -8,4 +8,7 @@
     <dimen name="large_margin">32dp</dimen>
     <dimen name="slider_width">280dp</dimen>
     <dimen name="big_margin">24dp</dimen>
+    <dimen name="cardview_height">192dp</dimen>
+    <dimen name="cardview_element_height">32dp</dimen>
+    <dimen name="extra_small_margin">4dp</dimen>
 </resources>

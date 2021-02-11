@@ -20,4 +20,8 @@
     <string name="trip_start_date_empty">You need to insert the trip start date!</string>
     <string name="trip_end_date_empty">You need to insert the trip start date!</string>
     <string name="toast_fields_empty">Pay attention to all fields!</string>
+    <string name="typeofdestinationimage">typeOfDestinationImage</string>
+    <string name="trip_price">trip price</string>
+    <string name="trip_destionation_name">trip destionation name</string>
+    <string name="trip_name">trip name</string>
 </resources>

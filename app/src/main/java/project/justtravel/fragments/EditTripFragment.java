@@ -30,22 +30,23 @@ import project.justtravel.R;
 import project.justtravel.data.Trip;
 import project.justtravel.viewmodel.TripViewModel;
 
-public class AddTripFragment extends Fragment {
+import static project.justtravel.fragments.AddTripFragment.CITY_BREAK_TYPE;
+import static project.justtravel.fragments.AddTripFragment.MOUNTAINS_TYPE;
+import static project.justtravel.fragments.AddTripFragment.SEASIDE_TYPE;
+import static project.justtravel.fragments.AddTripFragment.checkFieldIsEmpty;
+
+public class EditTripFragment extends Fragment {
+
     private EditText nameEditText, destinationEditText;
     private RadioGroup radioGroup;
     private RadioButton cityBreakRadioButton, seasideRadioButton, mountainsRadioButton;
     private Slider priceSlider;
     private RatingBar ratingBar;
     private EditText startDateEditText, endDateEditText;
-    private Button addTripButton;
+    private Button editTripButton;
     private TripViewModel tripViewModel;
 
-    public static final int CITY_BREAK_TYPE = 0;
-    public static final int SEASIDE_TYPE = 1;
-    public static final int MOUNTAINS_TYPE = 2;
-
-
-    public AddTripFragment() {
+    public EditTripFragment() {
         // Required empty public constructor
     }
 
@@ -81,14 +82,7 @@ public class AddTripFragment extends Fragment {
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                    new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view12, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            startDateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        }
-                    }, year, month, day);
+                    (view12, year1, monthOfYear, dayOfMonth) -> startDateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1), year, month, day);
             datePickerDialog.show();
         });
 
@@ -100,19 +94,12 @@ public class AddTripFragment extends Fragment {
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                    new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view1, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            endDateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        }
-                    }, year, month, day);
+                    (view1, year12, monthOfYear, dayOfMonth) -> endDateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year12), year, month, day);
             datePickerDialog.show();
         });
 
-        // onClick addTripButton
-        addTripButton.setOnClickListener(v -> {
+        // onClick editTripButton
+        editTripButton.setOnClickListener(v -> {
             boolean error = checkFieldIsEmpty(nameEditText, getString(R.string.trip_name_empty))
                     | checkFieldIsEmpty(destinationEditText, getString(R.string.trip_destination_empty))
                     | checkFieldIsEmpty(startDateEditText, getString(R.string.trip_start_date_empty))
@@ -149,15 +136,8 @@ public class AddTripFragment extends Fragment {
                 }
             }
         });
-        return view;
-    }
 
-    public static boolean checkFieldIsEmpty(EditText nameEditText, String error) {
-        if (nameEditText.getText().toString().isEmpty()) {
-            nameEditText.setError(error);
-            return true;
-        }
-        return false;
+        return view;
     }
 
     /* Function that init UI elements*/
@@ -170,7 +150,7 @@ public class AddTripFragment extends Fragment {
         mountainsRadioButton = view.findViewById(R.id.mountainsRadioButton);
         priceSlider = view.findViewById(R.id.priceSlider);
         ratingBar = view.findViewById(R.id.ratingBar);
-        addTripButton = view.findViewById(R.id.addTripButton);
+        editTripButton = view.findViewById(R.id.addTripButton);
         startDateEditText = view.findViewById(R.id.startDatePickerEditText);
         endDateEditText = view.findViewById(R.id.endDatePickerEditText);
     }

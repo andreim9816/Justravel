@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.View;
 
 import project.justtravel.R;
-import project.justtravel.fragments.AddTripFragment;
+import project.justtravel.data.TripListAdapter;
 import project.justtravel.fragments.TripsFragment;
 
 public class TripsActivity extends AppCompatActivity {

@@ -32,8 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:contentDescription="@string/typeofdestinationimage"
-                android:src="@android:drawable/ic_menu_info_details" />
+                android:contentDescription="@string/typeofdestinationimage" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardview_first_relative_layout"

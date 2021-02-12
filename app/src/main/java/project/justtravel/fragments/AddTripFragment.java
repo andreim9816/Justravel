@@ -24,13 +24,14 @@ import com.google.android.material.slider.Slider;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 import project.justtravel.R;
 import project.justtravel.data.Trip;
 import project.justtravel.viewmodel.TripViewModel;
 
 public class AddTripFragment extends Fragment {
+    private static String TAG = "AddTripFragment";
     private EditText nameEditText, destinationEditText;
     private RadioGroup radioGroup;
     private RadioButton cityBreakRadioButton, seasideRadioButton, mountainsRadioButton;
@@ -47,6 +48,10 @@ public class AddTripFragment extends Fragment {
 
     public AddTripFragment() {
         // Required empty public constructor
+    }
+
+    public static String getTAG() {
+        return TAG;
     }
 
     @Override
@@ -86,7 +91,7 @@ public class AddTripFragment extends Fragment {
                         @Override
                         public void onDateSet(DatePicker view12, int year,
                                               int monthOfYear, int dayOfMonth) {
-                            startDateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            startDateEditText.setText(transformData(dayOfMonth, monthOfYear, year));
                         }
                     }, year, month, day);
             datePickerDialog.show();
@@ -105,7 +110,7 @@ public class AddTripFragment extends Fragment {
                         @Override
                         public void onDateSet(DatePicker view1, int year,
                                               int monthOfYear, int dayOfMonth) {
-                            endDateEditText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            endDateEditText.setText(transformData(dayOfMonth, monthOfYear, year));
                         }
                     }, year, month, day);
             datePickerDialog.show();
@@ -120,6 +125,8 @@ public class AddTripFragment extends Fragment {
 
             if (error) {
                 Toast.makeText(getActivity(), getString(R.string.toast_fields_empty), Toast.LENGTH_LONG).show();
+            } else if (false) {
+                //TODO compare if startDate <= endDate
             } else {
                 int type = CITY_BREAK_TYPE;
 
@@ -130,7 +137,7 @@ public class AddTripFragment extends Fragment {
                 }
 
                 try {
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
                     Trip trip = new Trip(0,
                             nameEditText.getText().toString(),
                             destinationEditText.getText().toString(),
@@ -143,6 +150,12 @@ public class AddTripFragment extends Fragment {
 
                     tripViewModel.insert(trip);
                     displayFragment(new TripsFragment());
+
+//                    Fragment currentFragment = getParentFragmentManager().findFragmentById(R.id.tripsListFrameLayout);
+//                    getParentFragmentManager()
+//                            .beginTransaction()
+//                            .remove(currentFragment)
+//                            .commitNow();
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -181,4 +194,9 @@ public class AddTripFragment extends Fragment {
         fragmentTransaction.replace(R.id.tripsListFrameLayout, fragment);
         fragmentTransaction.commit();
     }
+
+    public static String transformData(int day, int month, int year) {
+        return day + "/" + (month + 1) + "/" + year;
+    }
+
 }

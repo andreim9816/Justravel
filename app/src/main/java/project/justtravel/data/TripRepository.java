@@ -1,9 +1,9 @@
 package project.justtravel.data;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.LiveDataKt;
 
 import java.util.List;
 
@@ -27,5 +27,6 @@ public class TripRepository {
 
     public void update(Trip trip) {
         TripRoomDatabase.databaseWriteExecutor.execute(() -> tripDao.update(trip));
+        Log.d("Trip repository", "Update: " + trip);
     }
 }

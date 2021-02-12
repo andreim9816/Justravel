@@ -4,7 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import static project.justtravel.fragments.AddTripFragment.CITY_BREAK_TYPE;
+import static project.justtravel.fragments.AddTripFragment.MOUNTAINS_TYPE;
+import static project.justtravel.fragments.AddTripFragment.SEASIDE_TYPE;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -22,15 +27,18 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
     class TripViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private final TextView tripNameTextView, tripDestinationTextView, tripPrice;
         private final CardView cardView;
+        private final ImageView imageView;
         ClickInterface clickInterface;
 
         private TripViewHolder(View itemView, ClickInterface clickInterface) {
             super(itemView);
+            this.clickInterface = clickInterface;
+
             tripNameTextView = itemView.findViewById(R.id.tripNameTextView);
             tripDestinationTextView = itemView.findViewById(R.id.tripDestinationTextView);
             tripPrice = itemView.findViewById(R.id.tripPriceTextView);
             cardView = itemView.findViewById(R.id.tripCardview);
-            this.clickInterface = clickInterface;
+            imageView = itemView.findViewById(R.id.tripImageView);
 
             // attach onClickListener to entire TripViewHolder
             cardView.setOnClickListener(this);
@@ -69,14 +77,30 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
     public void onBindViewHolder(@NotNull TripViewHolder holder, int position) {
         if (trips != null) {
             Trip current = trips.get(position);
+            String price = current.getPrice() + "€";
             holder.tripNameTextView.setText(current.getName());
             holder.tripDestinationTextView.setText(current.getDestination());
-            holder.tripPrice.setText(current.getPrice() + "€");
+            holder.tripPrice.setText(price);
+
+            switch (current.getType()) {
+                case CITY_BREAK_TYPE:
+                    holder.imageView.setBackgroundResource(R.drawable.citybreak_20);
+                    break;
+                case SEASIDE_TYPE:
+                    holder.imageView.setBackgroundResource(R.drawable.f73793c67bbc12e6c31517153694b7d7_30);
+                    break;
+                case MOUNTAINS_TYPE:
+                    holder.imageView.setBackgroundResource(R.drawable.mountains_20);
+                    break;
+                default:
+                    holder.imageView.setBackgroundResource(R.drawable.not_found);
+            }
+
         } else {
             // Covers the case of data not being ready yet.
-            holder.tripNameTextView.setText("Name not set");
-            holder.tripDestinationTextView.setText("Destination not set");
-            holder.tripPrice.setText("Price not set");
+            holder.tripNameTextView.setText(R.string.name_not_set);
+            holder.tripDestinationTextView.setText(R.string.destionation_not_set);
+            holder.tripPrice.setText(R.string.price_not_set);
         }
     }
 

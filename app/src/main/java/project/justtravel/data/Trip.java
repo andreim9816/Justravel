@@ -1,5 +1,6 @@
 package project.justtravel.data;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -79,5 +80,18 @@ public class Trip {
 
     public float getRating() {
         return rating;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "id: " + id +
+                "name: " + name +
+                "destination: " + destination +
+                "type: " + type +
+                "price: " + price +
+                "startDate: " + startDate +
+                "endDate: " + endDate +
+                "rating: " + rating;
     }
 }

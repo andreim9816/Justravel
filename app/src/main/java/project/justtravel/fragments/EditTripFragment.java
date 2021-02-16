@@ -4,11 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,7 +31,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import project.justtravel.R;
-import project.justtravel.data.Trip;
+import project.justtravel.data.model.Trip;
+import project.justtravel.ui.home.HomeFragment;
 import project.justtravel.viewmodel.TripViewModel;
 
 import static project.justtravel.fragments.AddTripFragment.CITY_BREAK_TYPE;
@@ -42,6 +44,7 @@ import static project.justtravel.fragments.AddTripFragment.transformData;
 public class EditTripFragment extends Fragment {
 
     private final static String TAG = "EditTripFragment";
+    private NavController navController;
     private TextView title;
     private EditText nameEditText, destinationEditText;
     private RadioGroup radioGroup;
@@ -60,7 +63,6 @@ public class EditTripFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
         Log.d(TAG, "onCreate");
@@ -76,14 +78,14 @@ public class EditTripFragment extends Fragment {
         // init UI elements
         initUiElements(view);
 
-        // override onBackPressed
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                //go back to trips fragment
-                displayFragment(new TripsFragment());
-            }
-        });
+//        // override onBackPressed
+//        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+//            @Override
+//            public void handleOnBackPressed() {
+//                //go back to trips fragment
+//                displayFragment(new TripsFragment());
+//            }
+//        });
 
         // onClick on startDate
         startDateEditText.setOnClickListener(v -> {
@@ -142,8 +144,9 @@ public class EditTripFragment extends Fragment {
                     );
 
                     tripViewModel.update(trip);
-                    displayFragment(new TripsFragment());
 
+//                    displayFragment(new TripsFragment());
+                    navController.navigate(R.id.nav_home);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -151,6 +154,12 @@ public class EditTripFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
     }
 
     /* Function that init UI elements*/
@@ -167,22 +176,30 @@ public class EditTripFragment extends Fragment {
         editTripButton = view.findViewById(R.id.addTripButton);
         startDateEditText = view.findViewById(R.id.startDatePickerEditText);
         endDateEditText = view.findViewById(R.id.endDatePickerEditText);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            tripToBeEdited = getArguments().getParcelable(HomeFragment.TRIP_OBJECT_PASSED);
+            modifyUIElements(tripToBeEdited);
+        } else {
+            Toast.makeText(getContext(), "Trip was not sent successfully!", Toast.LENGTH_LONG).show();
+        }
     }
 
-    /* Opens new fragment */
-    private void displayFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction(); //requireActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.tripsListFrameLayout, fragment);
-        fragmentTransaction.commit();
-    }
+//    /* Opens new fragment */
+//    private void displayFragment(Fragment fragment) {
+//        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction(); //requireActivity().getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.tripsListFrameLayout, fragment);
+//        fragmentTransaction.commit();
+//    }
 
-    public void getSharedTrip(Trip trip) {
-        tripToBeEdited = trip;
-        modifyUIElements();
-    }
+//    public void getSharedTrip(Trip trip) {
+//        tripToBeEdited = trip;
+//        modifyUIElements();
+//    }
 
     /* Function that updates the values according to the trip that is being edited */
-    private void modifyUIElements() {
+    private void modifyUIElements(Trip tripToBeEdited) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
         title.setText(R.string.edit_trip_title);

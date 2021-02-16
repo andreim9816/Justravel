@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import project.justtravel.data.Trip;
+import project.justtravel.data.model.Trip;
 
 public class SharedTripViewModel extends ViewModel {
     private MutableLiveData<Trip> sharedTrip;

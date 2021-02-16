@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import project.justtravel.data.Trip;
-import project.justtravel.data.TripRepository;
+import project.justtravel.data.model.Trip;
+import project.justtravel.data.repository.TripRepository;
 
 
 public class TripViewModel extends AndroidViewModel {

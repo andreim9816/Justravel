@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import project.justtravel.R;
+import project.justtravel.data.model.Trip;
 import project.justtravel.utils.ClickInterface;
 
 public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripViewHolder> {
@@ -87,7 +88,7 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
                     holder.imageView.setBackgroundResource(R.drawable.citybreak_20);
                     break;
                 case SEASIDE_TYPE:
-                    holder.imageView.setBackgroundResource(R.drawable.f73793c67bbc12e6c31517153694b7d7_30);
+                    holder.imageView.setBackgroundResource(R.drawable.seaside_20);
                     break;
                 case MOUNTAINS_TYPE:
                     holder.imageView.setBackgroundResource(R.drawable.mountains_20);

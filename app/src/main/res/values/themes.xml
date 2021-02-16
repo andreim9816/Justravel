@@ -27,4 +27,19 @@
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/white_logo</item>
     </style>
+
+    <style name="Theme.JustTravel.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">15%</item>
+        <item name="cornerSizeBottomRight">15%</item>
+    </style>
+
+    <style name="Theme.JustTravel.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.JustTravel.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

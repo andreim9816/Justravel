@@ -1,4 +1,4 @@
-package project.justtravel.data;
+package project.justtravel.data.repository;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,6 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+
+import project.justtravel.data.ApiAndDao.TripDao;
+import project.justtravel.data.TripRoomDatabase;
+import project.justtravel.data.model.Trip;
 
 public class TripRepository {
     private TripDao tripDao;
@@ -22,11 +26,11 @@ public class TripRepository {
     }
 
     public void insert(Trip trip) {
-        TripRoomDatabase.databaseWriteExecutor.execute(() -> tripDao.insert(trip));
+        TripRoomDatabase.getDatabaseWriteExecutor().execute(() -> tripDao.insert(trip));
     }
 
     public void update(Trip trip) {
-        TripRoomDatabase.databaseWriteExecutor.execute(() -> tripDao.update(trip));
+        TripRoomDatabase.getDatabaseWriteExecutor().execute(() -> tripDao.update(trip));
         Log.d("Trip repository", "Update: " + trip);
     }
 }

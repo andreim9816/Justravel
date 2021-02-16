@@ -29,4 +29,21 @@
     <string name="name_not_set">Name not set</string>
     <string name="destionation_not_set">Destination not set</string>
     <string name="price_not_set">Price not set</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="trip_type_image">Trip type image</string>
+    <string name="destination">Destination</string>
+    <string name="partly_cloudy">Partly Cloudy</string>
+    <string name="weather_icon">weather icon</string>
+    <string name="thermometer_image">thermometer image</string>
+    <string name="go_back_button">go back</string>
 </resources>

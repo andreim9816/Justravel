@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_logo"
+    tools:context=".fragments.ReadTripFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/trip_type_image"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
+
+            <ImageView
+                android:id="@+id/weather_icon"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/weather_icon"
+                android:scaleType="centerCrop"
+                android:src="@drawable/weather_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/weatherConditionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-24dp"
+                android:layout_marginTop="@dimen/extra_small_margin"
+                android:hint="@string/partly_cloudy"
+                android:textColor="@color/white_logo"
+                android:textSize="@dimen/medium_text_size"
+                app:layout_constraintStart_toEndOf="@+id/weather_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/minTempTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:hint="12"
+                android:textColor="@color/white_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/weather_icon"
+                app:layout_constraintTop_toBottomOf="@+id/weatherConditionTextView" />
+
+            <TextView
+                android:id="@+id/maxTempTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large_margin"
+                android:hint="20"
+                android:textColor="@color/white_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/thermomether_min"
+                app:layout_constraintTop_toBottomOf="@+id/weatherConditionTextView" />
+
+            <ImageView
+                android:id="@+id/thermomether_min"
+                android:layout_width="20dp"
+                android:layout_height="19dp"
+                android:contentDescription="@string/thermometer_image"
+                android:src="@drawable/ic_thermometer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/minTempTextView"
+                app:layout_constraintTop_toBottomOf="@+id/weatherConditionTextView"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageView
+                android:id="@+id/thermomether_max"
+                android:layout_width="20dp"
+                android:layout_height="19dp"
+                android:contentDescription="@string/thermometer_image"
+                android:src="@drawable/ic_thermometer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/maxTempTextView"
+                app:layout_constraintTop_toBottomOf="@+id/weatherConditionTextView"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/temperatureTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:hint="18°C"
+                android:textColor="@color/white_logo"
+                android:textSize="@dimen/big_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:background="@color/white_logo"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/destinationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="@string/destination"
+            android:textColor="@color/white_logo"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view_separator" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDates"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/destinationTextView">
+
+            <TextView
+                android:id="@+id/startDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="10/09/2020"
+                android:textColor="@color/white_logo"
+                android:textSize="@dimen/small_text_size" />
+
+            <TextView
+                android:id="@+id/endDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/big_margin"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="20/09/2020"
+                android:textColor="@color/white_logo"
+                android:textSize="@dimen/small_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTripData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            android:layout_marginTop="@dimen/big_margin"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutDates">
+
+            <TextView
+                android:id="@+id/priceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="price"
+                android:textColor="@color/white_logo"
+                android:textSize="@dimen/small_text_size" />
+
+            <TextView
+                android:id="@+id/ratingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="rating"
+                android:textColor="@color/white_logo"
+                android:textSize="@dimen/small_text_size" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/backButton"
+            style="@style/button_primary"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:background="@drawable/button_primary"
+            android:text="@string/go_back_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

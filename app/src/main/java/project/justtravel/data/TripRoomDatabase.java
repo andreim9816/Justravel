@@ -3,11 +3,9 @@ package project.justtravel.data;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.room.Dao;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
@@ -15,6 +13,8 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import project.justtravel.data.ApiAndDao.TripDao;
+import project.justtravel.data.model.Trip;
 import project.justtravel.utils.DateConverter;
 
 @Database(entities = {Trip.class}, version = 1, exportSchema = false)
@@ -24,10 +24,14 @@ public abstract class TripRoomDatabase extends RoomDatabase {
 
     private static volatile TripRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
+    private static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static TripRoomDatabase getDatabase(final Context context) {
+    public static ExecutorService getDatabaseWriteExecutor() {
+        return databaseWriteExecutor;
+    }
+
+    public static TripRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (TripRoomDatabase.class) {
                 if (INSTANCE == null) {

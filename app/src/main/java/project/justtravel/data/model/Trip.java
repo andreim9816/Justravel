@@ -1,4 +1,7 @@
-package project.justtravel.data;
+package project.justtravel.data.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -11,7 +14,7 @@ import java.util.Date;
 import project.justtravel.utils.DateConverter;
 
 @Entity(tableName = "trip_table")
-public class Trip {
+public class Trip implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private final int id;
@@ -49,6 +52,29 @@ public class Trip {
         this.endDate = endDate;
         this.rating = rating;
     }
+
+    protected Trip(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        destination = in.readString();
+        type = in.readInt();
+        price = in.readInt();
+        startDate = new Date(in.readLong());
+        endDate = new Date(in.readLong());
+        rating = in.readFloat();
+    }
+
+    public static final Creator<Trip> CREATOR = new Creator<Trip>() {
+        @Override
+        public Trip createFromParcel(Parcel in) {
+            return new Trip(in);
+        }
+
+        @Override
+        public Trip[] newArray(int size) {
+            return new Trip[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -93,5 +119,22 @@ public class Trip {
                 "startDate: " + startDate +
                 "endDate: " + endDate +
                 "rating: " + rating;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(destination);
+        dest.writeInt(type);
+        dest.writeLong(startDate.getTime());
+        dest.writeLong(endDate.getTime());
+        dest.writeInt(price);
+        dest.writeFloat(rating);
     }
 }

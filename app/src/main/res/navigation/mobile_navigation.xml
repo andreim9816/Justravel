@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="project.justtravel.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_addTripFragment"
+            app:destination="@id/addTripFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_editTripFragment"
+            app:destination="@id/editTripFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_readTripFragment"
+            app:destination="@id/readTripFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="project.justtravel.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="project.justtravel.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/addTripFragment"
+        android:name="project.justtravel.fragments.AddTripFragment"
+        android:label="fragment_add_trip"
+        tools:layout="@layout/fragment_add_trip" >
+        <action
+            android:id="@+id/action_addTripFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTripFragment"
+        android:name="project.justtravel.fragments.EditTripFragment"
+        android:label="fragment_edit_trip"
+        tools:layout="@layout/fragment_edit_trip" >
+        <action
+            android:id="@+id/action_editTripFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/readTripFragment"
+        android:name="project.justtravel.fragments.ReadTripFragment"
+        android:label="fragment_read_trip"
+        tools:layout="@layout/fragment_read_trip" >
+        <action
+            android:id="@+id/action_readTripFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+</navigation>

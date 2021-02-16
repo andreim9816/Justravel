@@ -27,7 +27,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import project.justtravel.R;
-import project.justtravel.data.Trip;
+import project.justtravel.data.model.Trip;
 import project.justtravel.viewmodel.TripViewModel;
 
 public class AddTripFragment extends Fragment {

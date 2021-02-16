@@ -30,17 +30,12 @@ import project.justtravel.viewmodel.TripViewModel;
 
 public class HomeFragment extends Fragment implements ClickInterface {
     public static final String TRIP_OBJECT_PASSED = "TRIP_OBJECT_PASSED";
-
     private RecyclerView recyclerView;
     private NavController navController;
     private FloatingActionButton fabButton;
     private TripListAdapter adapter;
     private static final String TAG = "TripsFragment";
     private TripViewModel tripViewModel;
-
-//    public interface OnTripsFragmentListener {
-//        public void sendTripObjectToEditFragment(Trip trip);
-//    }
 
     public HomeFragment() {
         // Required empty public constructor
@@ -64,8 +59,7 @@ public class HomeFragment extends Fragment implements ClickInterface {
         // onClick on FAB -> opens new Fragment
         fabButton = view.findViewById(R.id.fab);
         fabButton.setOnClickListener(v -> {
-//            displayFragment(new AddTripFragment(), AddTripFragment.getTAG())
-            navController.navigate(R.id.addTripFragment);
+            nextFragment(R.id.action_nav_home_to_addTripFragment, null);
         });
 
         // set layout
@@ -89,7 +83,6 @@ public class HomeFragment extends Fragment implements ClickInterface {
             }
         });
 
-//        RoomExplorer.show(container.getContext(), TripRoomDatabase.class, "trip_database");
         return view;
     }
 
@@ -104,29 +97,15 @@ public class HomeFragment extends Fragment implements ClickInterface {
         Trip trip = adapter.getTrips().get(position);
         Bundle bundle = new Bundle();
         bundle.putParcelable(TRIP_OBJECT_PASSED, trip);
-        nextFragment(R.id.readTripFragment, bundle);
-        Log.d("TripsFragment", "simple click " + trip.getName() + " " + trip.getDestination());
+        nextFragment(R.id.action_nav_home_to_readTripFragment, bundle);
     }
 
     @Override
     public void onLongClick(int position) {
         Trip trip = adapter.getTrips().get(position);
-//        project.justtravel.fragments.TripsFragment.OnTripsFragmentListener listener = (project.justtravel.fragments.TripsFragment.OnTripsFragmentListener) getActivity(); // gets the fragment's activity
-        Log.d("TripsFragment", "on LONGGGGG click " + trip.getName() + " " + trip.getDestination());
-//        displayFragment(new EditTripFragment(), EditTripFragment.getTAG());
         Bundle bundle = new Bundle();
         bundle.putParcelable(TRIP_OBJECT_PASSED, trip);
-        nextFragment(R.id.editTripFragment, bundle);
-
-//        for (int entry = 0; entry < getActivity().getSupportFragmentManager().getBackStackEntryCount(); entry++) {
-//            Log.d("Trips activity", "Found fragment: " + getParentFragmentManager().getBackStackEntryAt(entry).getId());
-//        }
-
-//        if (listener == null) {
-//            Toast.makeText(getActivity(), "Cannot edit this trip!", Toast.LENGTH_LONG).show();
-//        } else {
-//            listener.sendTripObjectToEditFragment(trip);
-//        }
+        nextFragment(R.id.action_nav_home_to_editTripFragment, bundle);
     }
 
     public void nextFragment(int resId, Bundle bundle) {

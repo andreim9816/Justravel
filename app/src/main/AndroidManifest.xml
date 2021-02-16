@@ -3,18 +3,13 @@
     package="project.justtravel">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JustTravel">
-        <activity
-            android:name=".activity.NavigationActivity"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/Theme.JustTravel.NoActionBar" />
         <activity
             android:name=".activity.TripsActivity"
             android:theme="@style/Theme.JustTravel.NoActionBar" />
@@ -26,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

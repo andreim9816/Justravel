@@ -38,7 +38,7 @@ import project.justtravel.viewmodel.TripViewModel;
 import static project.justtravel.fragments.AddTripFragment.CITY_BREAK_TYPE;
 import static project.justtravel.fragments.AddTripFragment.MOUNTAINS_TYPE;
 import static project.justtravel.fragments.AddTripFragment.SEASIDE_TYPE;
-import static project.justtravel.fragments.AddTripFragment.checkFieldIsEmpty;
+import static project.justtravel.fragments.AddTripFragment.checkFieldIsEmptySetError;
 import static project.justtravel.fragments.AddTripFragment.transformData;
 
 public class EditTripFragment extends Fragment {
@@ -113,10 +113,10 @@ public class EditTripFragment extends Fragment {
 
         // onClick editTripButton
         editTripButton.setOnClickListener(v -> {
-            boolean error = checkFieldIsEmpty(nameEditText, getString(R.string.trip_name_empty))
-                    | checkFieldIsEmpty(destinationEditText, getString(R.string.trip_destination_empty))
-                    | checkFieldIsEmpty(startDateEditText, getString(R.string.trip_start_date_empty))
-                    | checkFieldIsEmpty(endDateEditText, getString(R.string.trip_end_date_empty));
+            boolean error = checkFieldIsEmptySetError(nameEditText, getString(R.string.trip_name_empty))
+                    | checkFieldIsEmptySetError(destinationEditText, getString(R.string.trip_destination_empty))
+                    | checkFieldIsEmptySetError(startDateEditText, getString(R.string.trip_start_date_empty))
+                    | checkFieldIsEmptySetError(endDateEditText, getString(R.string.trip_end_date_empty));
 
             if (error) {
                 Toast.makeText(getActivity(), getString(R.string.toast_fields_empty), Toast.LENGTH_LONG).show();

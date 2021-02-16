@@ -9,54 +9,77 @@
         android:id="@+id/nav_home"
         android:name="project.justtravel.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_addTripFragment"
-            app:destination="@id/addTripFragment" />
+            app:destination="@id/addTripFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_home_to_editTripFragment"
-            app:destination="@id/editTripFragment" />
+            app:destination="@id/editTripFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_nav_home_to_readTripFragment"
-            app:destination="@id/readTripFragment" />
+            app:destination="@id/readTripFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="project.justtravel.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/about_us"
+        android:name="project.justtravel.ui.about_us.AboutUsFragment"
+        android:label="@string/about_us"
+        tools:layout="@layout/fragment_about_us" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="project.justtravel.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/contact"
+        android:name="project.justtravel.ui.contact.ContactFragment"
+        android:label="Contact"
+        tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/addTripFragment"
         android:name="project.justtravel.fragments.AddTripFragment"
-        android:label="fragment_add_trip"
-        tools:layout="@layout/fragment_add_trip" >
+        android:label="@string/new_trip"
+        tools:layout="@layout/fragment_add_trip">
         <action
             android:id="@+id/action_addTripFragment_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/editTripFragment"
         android:name="project.justtravel.fragments.EditTripFragment"
-        android:label="fragment_edit_trip"
-        tools:layout="@layout/fragment_edit_trip" >
+        android:label="@string/edit_trip"
+        tools:layout="@layout/fragment_edit_trip">
         <action
             android:id="@+id/action_editTripFragment_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/readTripFragment"
         android:name="project.justtravel.fragments.ReadTripFragment"
-        android:label="fragment_read_trip"
-        tools:layout="@layout/fragment_read_trip" >
+        android:label="@string/details"
+        tools:layout="@layout/fragment_read_trip">
         <action
             android:id="@+id/action_readTripFragment_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

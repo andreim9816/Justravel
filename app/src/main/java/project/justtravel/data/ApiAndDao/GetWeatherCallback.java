@@ -1,9 +1,9 @@
 package project.justtravel.data.ApiAndDao;
 
-import project.justtravel.data.model.Weather;
+import project.justtravel.data.model.WeatherResponse;
 
 public interface GetWeatherCallback {
-    void onSuccess(Weather weather);
+    void onSuccess(WeatherResponse weather);
 
     void onError();
 }

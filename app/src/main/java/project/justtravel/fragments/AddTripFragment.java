@@ -3,10 +3,12 @@ package project.justtravel.fragments;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,7 @@ import project.justtravel.data.model.Trip;
 import project.justtravel.viewmodel.TripViewModel;
 
 public class AddTripFragment extends Fragment {
-    private static String TAG = "AddTripFragment";
+    private NavController navController;
     private EditText nameEditText, destinationEditText;
     private RadioGroup radioGroup;
     private RadioButton cityBreakRadioButton, seasideRadioButton, mountainsRadioButton;
@@ -45,13 +47,8 @@ public class AddTripFragment extends Fragment {
     public static final int SEASIDE_TYPE = 1;
     public static final int MOUNTAINS_TYPE = 2;
 
-
     public AddTripFragment() {
         // Required empty public constructor
-    }
-
-    public static String getTAG() {
-        return TAG;
     }
 
     @Override
@@ -69,15 +66,6 @@ public class AddTripFragment extends Fragment {
         // init UI elements
         initUiElements(view);
 
-        // override onBackPressed
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                //go back to trips fragment
-                displayFragment(new TripsFragment());
-            }
-        });
-
         // onClick on startDate
         startDateEditText.setOnClickListener(v -> {
             final Calendar c = Calendar.getInstance();
@@ -86,14 +74,7 @@ public class AddTripFragment extends Fragment {
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                    new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view12, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            startDateEditText.setText(transformData(dayOfMonth, monthOfYear, year));
-                        }
-                    }, year, month, day);
+                    (view12, year12, monthOfYear, dayOfMonth) -> startDateEditText.setText(transformData(dayOfMonth, monthOfYear, year12)), year, month, day);
             datePickerDialog.show();
         });
 
@@ -105,23 +86,16 @@ public class AddTripFragment extends Fragment {
             int day = c.get(Calendar.DAY_OF_MONTH);
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
-                    new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view1, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            endDateEditText.setText(transformData(dayOfMonth, monthOfYear, year));
-                        }
-                    }, year, month, day);
+                    (view1, year1, monthOfYear, dayOfMonth) -> endDateEditText.setText(transformData(dayOfMonth, monthOfYear, year1)), year, month, day);
             datePickerDialog.show();
         });
 
         // onClick addTripButton
         addTripButton.setOnClickListener(v -> {
-            boolean error = checkFieldIsEmpty(nameEditText, getString(R.string.trip_name_empty))
-                    | checkFieldIsEmpty(destinationEditText, getString(R.string.trip_destination_empty))
-                    | checkFieldIsEmpty(startDateEditText, getString(R.string.trip_start_date_empty))
-                    | checkFieldIsEmpty(endDateEditText, getString(R.string.trip_end_date_empty));
+            boolean error = checkFieldIsEmptySetError(nameEditText, getString(R.string.trip_name_empty))
+                    | checkFieldIsEmptySetError(destinationEditText, getString(R.string.trip_destination_empty))
+                    | checkFieldIsEmptySetError(startDateEditText, getString(R.string.trip_start_date_empty))
+                    | checkFieldIsEmptySetError(endDateEditText, getString(R.string.trip_end_date_empty));
 
             if (error) {
                 Toast.makeText(getActivity(), getString(R.string.toast_fields_empty), Toast.LENGTH_LONG).show();
@@ -149,14 +123,7 @@ public class AddTripFragment extends Fragment {
                     );
 
                     tripViewModel.insert(trip);
-                    displayFragment(new TripsFragment());
-
-//                    Fragment currentFragment = getParentFragmentManager().findFragmentById(R.id.tripsListFrameLayout);
-//                    getParentFragmentManager()
-//                            .beginTransaction()
-//                            .remove(currentFragment)
-//                            .commitNow();
-
+                    nextFragment(R.id.action_addTripFragment_to_nav_home, null);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -165,7 +132,13 @@ public class AddTripFragment extends Fragment {
         return view;
     }
 
-    public static boolean checkFieldIsEmpty(EditText nameEditText, String error) {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
+    }
+
+    public static boolean checkFieldIsEmptySetError(EditText nameEditText, String error) {
         if (nameEditText.getText().toString().isEmpty()) {
             nameEditText.setError(error);
             return true;
@@ -188,15 +161,11 @@ public class AddTripFragment extends Fragment {
         endDateEditText = view.findViewById(R.id.endDatePickerEditText);
     }
 
-    /* Opens new fragment */
-    private void displayFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction(); //requireActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.tripsListFrameLayout, fragment);
-        fragmentTransaction.commit();
-    }
-
     public static String transformData(int day, int month, int year) {
         return day + "/" + (month + 1) + "/" + year;
     }
 
+    public void nextFragment(int resId, Bundle bundle) {
+        navController.navigate(resId, bundle);
+    }
 }

@@ -46,4 +46,8 @@
     <string name="weather_icon">weather icon</string>
     <string name="thermometer_image">thermometer image</string>
     <string name="go_back_button">go back</string>
+    <string name="about_us">About us</string>
+    <string name="contact">Contact</string>
+    <string name="edit_trip">Edit trip</string>
+    <string name="details">Details</string>
 </resources>

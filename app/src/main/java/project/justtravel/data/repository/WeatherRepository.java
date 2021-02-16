@@ -2,7 +2,7 @@ package project.justtravel.data.repository;
 
 import project.justtravel.data.ApiAndDao.GetWeatherCallback;
 import project.justtravel.data.ApiAndDao.WeatherApi;
-import project.justtravel.data.model.Weather;
+import project.justtravel.data.model.WeatherResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -12,11 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WeatherRepository {
     private static WeatherRepository weatherRepository;
     private WeatherApi weatherApi;
-    private static String API_KEY = "c64930fc4372bdd96703ed4f7b5e9e53";
-
-    public static String getAPI_KEY() {
-        return API_KEY;
-    }
+    private final static String API_KEY = "c64930fc4372bdd96703ed4f7b5e9e53";
+    private final static String API_URL = "https://api.openweathermap.org";
 
     private WeatherRepository(WeatherApi weatherApi) {
         this.weatherApi = weatherApi;
@@ -25,7 +22,7 @@ public class WeatherRepository {
     public static WeatherRepository getInstance() {
         if (weatherRepository == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.openweathermap.org")
+                    .baseUrl(API_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             weatherRepository = new WeatherRepository(retrofit.create(WeatherApi.class));
@@ -33,13 +30,13 @@ public class WeatherRepository {
         return weatherRepository;
     }
 
-    public void getWeather(final GetWeatherCallback callback, String destination, String API_KEY) {
-        weatherApi.getWeather(destination, API_KEY, "metric")
-                .enqueue(new Callback<Weather>() {
+    public void getWeather(final GetWeatherCallback callback, String destination, String API_KEY, String units) {
+        weatherApi.getWeather(destination, API_KEY, units)
+                .enqueue(new Callback<WeatherResponse>() {
                     @Override
-                    public void onResponse(Call<Weather> call, Response<Weather> response) {
+                    public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                         if (response.isSuccessful()) {
-                            Weather weather = response.body();
+                            WeatherResponse weather = response.body();
                             if (weather != null) {
                                 callback.onSuccess(weather);
                             } else {
@@ -51,9 +48,13 @@ public class WeatherRepository {
                     }
 
                     @Override
-                    public void onFailure(Call<Weather> call, Throwable t) {
+                    public void onFailure(Call<WeatherResponse> call, Throwable t) {
                         callback.onError();
                     }
                 });
+    }
+
+    public static String getApiKey() {
+        return API_KEY;
     }
 }

@@ -45,8 +45,8 @@ public abstract class TripRoomDatabase extends RoomDatabase {
                                         @Override
                                         public void run() {
                                             TripDao dao = INSTANCE.tripDao();
-                                            dao.insert(new Trip(1, "numeExcursie1", "numeDestinatie1", 0, 3000, new Date(), new Date(), 5));
-                                            dao.insert(new Trip(2, "numeExcursie2", "numeDestinatie2", 5, 550, new Date(), new Date(), (float) 3.5));
+                                            dao.insert(new Trip(1, "English adventure", "Manchester", 0, 3000, new Date(), new Date(), 5));
+//                                            dao.insert(new Trip(2, "French trip", "Paris", 2, 1550, new Date(), new Date(), (float) 3.5));
                                         }
                                     });
                                 }

@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import java.util.Objects;
 
+import project.justtravel.BuildConfig;
 import project.justtravel.R;
 import project.justtravel.data.ApiAndDao.GetWeatherCallback;
 import project.justtravel.data.model.Trip;
-import project.justtravel.data.model.Weather;
+import project.justtravel.data.model.WeatherResponse;
 import project.justtravel.data.repository.WeatherRepository;
 import project.justtravel.ui.home.HomeFragment;
 
@@ -72,9 +72,9 @@ public class ReadTripFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            modifyUIElements(getArguments().getParcelable(HomeFragment.TRIP_OBJECT_PASSED));
+            modifyUIElements(bundle.getParcelable(HomeFragment.TRIP_OBJECT_PASSED));
         } else {
-            Toast.makeText(getContext(), "Trip was not sent successfully!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Internal error regarding object passing! Please exit", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -95,29 +95,60 @@ public class ReadTripFragment extends Fragment {
         }
 
         destinationTextView.setText(trip.getDestination());
-        priceTextView.setText(trip.getPrice() + "$");
+        priceTextView.setText(trip.getPrice() + "");
         ratingTextView.setText(trip.getRating() + "");
 
         startDateTextView.setText(simpleDateFormat.format(trip.getStartDate()));
         endDateTextView.setText(simpleDateFormat.format(trip.getEndDate()));
 
         /* Populate views with data */
-        getWeather(trip.getDestination(), WeatherRepository.getAPI_KEY());
+        getWeather(trip.getDestination(), WeatherRepository.getApiKey(), "metric");
     }
 
-    public void getWeather(String destination, String API_KEY) {
+    public void getWeather(String destination, String API_KEY, String units) {
         WeatherRepository weatherRepository = WeatherRepository.getInstance();
 
         weatherRepository.getWeather(new GetWeatherCallback() {
             @Override
-            public void onSuccess(Weather weather) {
-                int x = 3;
+            public void onSuccess(WeatherResponse weather) {
+
+                /* Get the values, round and convert them to string */
+                float minTemp = weather.getMain().getTemp_min();
+                float maxTemp = weather.getMain().getTemp_max();
+                float temperature = weather.getMain().getTemp();
+
+                String strMinTemp = Math.round(minTemp) + "";
+                String strMaxTemp = Math.round(maxTemp) + "";
+                String strTemp = Math.round(temperature) + "°C";
+
+                minTempTextView.setText(strMinTemp);
+                maxTempTextView.setText(strMaxTemp);
+                temperatureTextView.setText(strTemp);
+
+                /* Set weather icon, according to its response */
+                String imageName = weather.getWeatherList().get(0).getIcon();
+                int res = getResources().getIdentifier('_' + imageName, "drawable", BuildConfig.APPLICATION_ID);
+                weatherIconImageView.setImageResource(res);
+
+                /* Set weather description */
+                weatherConditionTextView.setText(weather.getWeatherList().get(0).getMain());
             }
 
             @Override
             public void onError() {
-                int x = 3;
+                Toast.makeText(getContext(), "Destination not found! No weather data to be displayed!", Toast.LENGTH_LONG).show();
+                String NotApplied = "N/A";
+
+                minTempTextView.setText(NotApplied);
+                maxTempTextView.setText(NotApplied);
+                temperatureTextView.setText(NotApplied);
+
+                /* Set weather icon */
+                weatherIconImageView.setImageResource(R.drawable.ic_image_not_found);
+
+                /* Set weather description */
+                weatherConditionTextView.setText(NotApplied);
             }
-        }, destination, API_KEY);
+        }, destination, API_KEY, units);
     }
 }

@@ -1,9 +1,6 @@
 package project.justtravel.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -84,13 +83,16 @@ public class ReadTripFragment extends Fragment {
 
         switch (trip.getType()) {
             case CITY_BREAK_TYPE:
-                tripImageView.setBackgroundResource(R.drawable.citybreak_20);
+                tripImageView.setBackgroundResource(R.drawable.citybreak);
                 break;
             case SEASIDE_TYPE:
                 tripImageView.setBackgroundResource(R.drawable.seaside);
                 break;
             case MOUNTAINS_TYPE:
-                tripImageView.setBackgroundResource(R.drawable.mountains_20);
+                tripImageView.setBackgroundResource(R.drawable.mountains);
+                break;
+            default:
+                tripImageView.setBackgroundResource(R.drawable.not_found);
                 break;
         }
 

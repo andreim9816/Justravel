@@ -7,10 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static project.justtravel.fragments.AddTripFragment.CITY_BREAK_TYPE;
-import static project.justtravel.fragments.AddTripFragment.MOUNTAINS_TYPE;
-import static project.justtravel.fragments.AddTripFragment.SEASIDE_TYPE;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +18,10 @@ import java.util.List;
 import project.justtravel.R;
 import project.justtravel.data.model.Trip;
 import project.justtravel.utils.ClickInterface;
+
+import static project.justtravel.fragments.AddTripFragment.CITY_BREAK_TYPE;
+import static project.justtravel.fragments.AddTripFragment.MOUNTAINS_TYPE;
+import static project.justtravel.fragments.AddTripFragment.SEASIDE_TYPE;
 
 public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripViewHolder> {
 
@@ -82,19 +82,19 @@ public class TripListAdapter extends RecyclerView.Adapter<TripListAdapter.TripVi
             holder.tripNameTextView.setText(current.getName());
             holder.tripDestinationTextView.setText(current.getDestination());
             holder.tripPrice.setText(price);
-
             switch (current.getType()) {
                 case CITY_BREAK_TYPE:
-                    holder.imageView.setBackgroundResource(R.drawable.citybreak_20);
+                    holder.imageView.setBackgroundResource(R.drawable.citybreak_recycler_view);
                     break;
                 case SEASIDE_TYPE:
-                    holder.imageView.setBackgroundResource(R.drawable.seaside_20);
+                    holder.imageView.setBackgroundResource(R.drawable.seaside_recycler_view);
                     break;
                 case MOUNTAINS_TYPE:
-                    holder.imageView.setBackgroundResource(R.drawable.mountains_20);
+                    holder.imageView.setBackgroundResource(R.drawable.mountains_recycler_view);
                     break;
                 default:
                     holder.imageView.setBackgroundResource(R.drawable.not_found);
+                    break;
             }
 
         } else {

@@ -23,4 +23,6 @@
     <dimen name="icon_size">20dp</dimen>
     <dimen name="logo_width">300dp</dimen>
     <dimen name="logo_height">300dp</dimen>
+    <dimen name="checkbox_width">30dp</dimen>
+    <dimen name="checkbox_height">30dp</dimen>
 </resources>

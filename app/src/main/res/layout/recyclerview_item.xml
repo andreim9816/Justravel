@@ -56,8 +56,8 @@
                 <CheckBox
                     android:id="@+id/star"
                     style="?android:attr/starStyle"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/checkbox_width"
+                    android:layout_height="@dimen/checkbox_height"
                     card_view:layout_constraintBottom_toBottomOf="@+id/tripNameTextView"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />

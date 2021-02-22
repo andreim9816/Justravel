@@ -1,17 +1,7 @@
 package project.justtravel.fragments;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +12,13 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.slider.Slider;
 
@@ -42,8 +39,6 @@ import static project.justtravel.fragments.AddTripFragment.checkFieldIsEmptySetE
 import static project.justtravel.fragments.AddTripFragment.transformData;
 
 public class EditTripFragment extends Fragment {
-
-    private final static String TAG = "EditTripFragment";
     private NavController navController;
     private TextView title;
     private EditText nameEditText, destinationEditText;
@@ -65,27 +60,16 @@ public class EditTripFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
-        Log.d(TAG, "onCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_trip, container, false);
 
         // init UI elements
         initUiElements(view);
-
-//        // override onBackPressed
-//        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-//            @Override
-//            public void handleOnBackPressed() {
-//                //go back to trips fragment
-//                displayFragment(new TripsFragment());
-//            }
-//        });
 
         // onClick on startDate
         startDateEditText.setOnClickListener(v -> {
@@ -144,8 +128,6 @@ public class EditTripFragment extends Fragment {
                     );
 
                     tripViewModel.update(trip);
-
-//                    displayFragment(new TripsFragment());
                     navController.navigate(R.id.nav_home);
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -186,18 +168,6 @@ public class EditTripFragment extends Fragment {
         }
     }
 
-//    /* Opens new fragment */
-//    private void displayFragment(Fragment fragment) {
-//        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction(); //requireActivity().getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.tripsListFrameLayout, fragment);
-//        fragmentTransaction.commit();
-//    }
-
-//    public void getSharedTrip(Trip trip) {
-//        tripToBeEdited = trip;
-//        modifyUIElements();
-//    }
-
     /* Function that updates the values according to the trip that is being edited */
     private void modifyUIElements(Trip tripToBeEdited) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
@@ -224,52 +194,5 @@ public class EditTripFragment extends Fragment {
 
         startDateEditText.setText(simpleDateFormat.format(tripToBeEdited.getStartDate()));
         endDateEditText.setText(simpleDateFormat.format(tripToBeEdited.getEndDate()));
-    }
-
-    public static String getTAG() {
-        return TAG;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Log.d(TAG, "OnAttach");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart ");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause ");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop ");
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onDestroyView: ");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: ");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d(TAG, "onDetach: ");
     }
 }

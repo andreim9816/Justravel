@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment implements ClickInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "OnCreate");
         // Get a new or existing ViewModel from the ViewModelProvider.
         tripViewModel = new ViewModelProvider(this).get(TripViewModel.class);
     }
@@ -52,7 +51,6 @@ public class HomeFragment extends Fragment implements ClickInterface {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d(TAG, "OnCreateView");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
 
@@ -78,7 +76,6 @@ public class HomeFragment extends Fragment implements ClickInterface {
             @Override
             public void onChanged(List<Trip> trips) {
                 // update the cached copy
-                Log.d(TAG, "OBSERVE ON CHANGED");
                 adapter.setTrips(trips);
             }
         });
@@ -110,47 +107,5 @@ public class HomeFragment extends Fragment implements ClickInterface {
 
     public void nextFragment(int resId, Bundle bundle) {
         navController.navigate(resId, bundle);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart ");
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        Log.d(TAG, "OnAttach");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause ");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop ");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onDestroyView: ");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: ");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d(TAG, "onDetach: ");
     }
 }

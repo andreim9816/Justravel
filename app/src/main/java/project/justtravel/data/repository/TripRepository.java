@@ -31,6 +31,5 @@ public class TripRepository {
 
     public void update(Trip trip) {
         TripRoomDatabase.getDatabaseWriteExecutor().execute(() -> tripDao.update(trip));
-        Log.d("Trip repository", "Update: " + trip);
     }
 }

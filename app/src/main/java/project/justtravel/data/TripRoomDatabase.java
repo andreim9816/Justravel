@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 
 import project.justtravel.data.ApiAndDao.TripDao;
 import project.justtravel.data.model.Trip;
+import project.justtravel.fragments.AddTripFragment;
 import project.justtravel.utils.DateConverter;
 
 @Database(entities = {Trip.class}, version = 1, exportSchema = false)
@@ -45,8 +46,11 @@ public abstract class TripRoomDatabase extends RoomDatabase {
                                         @Override
                                         public void run() {
                                             TripDao dao = INSTANCE.tripDao();
-                                            dao.insert(new Trip(1, "English adventure", "Manchester", 0, 3000, new Date(), new Date(), 5));
-//                                            dao.insert(new Trip(2, "French trip", "Paris", 2, 1550, new Date(), new Date(), (float) 3.5));
+                                            dao.insert(new Trip(1, "English adventure", "Manchester", AddTripFragment.CITY_BREAK_TYPE, 3000, new Date(), new Date(), 5f));
+                                            dao.insert(new Trip(2, "French trip", "Paris", AddTripFragment.CITY_BREAK_TYPE, 1550, new Date(), new Date(), 3.5f));
+                                            dao.insert(new Trip(3, "Ski trip", "Sinaia", AddTripFragment.MOUNTAINS_TYPE, 3550, new Date(), new Date(), 4.5f));
+                                            dao.insert(new Trip(4, "Culture travel", "London", AddTripFragment.CITY_BREAK_TYPE, 1950, new Date(), new Date(), 3.5f));
+                                            dao.insert(new Trip(5, "Relax allDay", "Hawaii", AddTripFragment.SEASIDE_TYPE, 4550, new Date(), new Date(), 5f));
                                         }
                                     });
                                 }

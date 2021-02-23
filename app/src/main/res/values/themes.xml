@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.JustTravel" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.JustTravel" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_logo</item>
         <item name="colorPrimaryVariant">#003d84</item>

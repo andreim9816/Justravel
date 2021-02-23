@@ -33,3 +33,13 @@ Mobile app, built using Android technologies and concepts:
 1. Fragments 
 1. Retrofit and Room (Database and DAOs)
 1. MVVM architecture
+
+## App snapshots
+
+<p float="left">
+  <img src="https://github.com/andreim9816/Justravel/blob/main/git%20images/Splash%20screen.png" width="200px" />
+  <img src="https://github.com/andreim9816/Justravel/blob/main/git%20images/Trips.png" width="200px" /> 
+  <img src="https://github.com/andreim9816/Justravel/blob/main/git%20images/New%20Trip.png" width="200px" />
+  <img src="https://github.com/andreim9816/Justravel/blob/main/git%20images/Details.png" width="200px" />
+  <img src="https://github.com/andreim9816/Justravel/blob/main/git%20images/Edit%20Trip.png" width="200px" />
+</p>
